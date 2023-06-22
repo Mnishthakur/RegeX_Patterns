@@ -7,18 +7,21 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Enter a string:");
+        Console.WriteLine("Enter a string");
         string input = Console.ReadLine();
+        MatchCollection matches = Regex.Matches(input, @"\b[a-z]+_[a-z]+\b");
 
-        bool isMatch = Regex.IsMatch(input, @"a(bb | bbb)?");
-
-        if (isMatch)
+        if (matches.Count > 0)
         {
-            Console.WriteLine("The string matches the pattern");
+            Console.WriteLine("Sequences of lowercase letter joined by an underscore;");
+            foreach (Match match in matches)
+            {
+                Console.WriteLine(match.Value);
+            }
         }
         else
         {
-            Console.WriteLine("The string does not match the pattern");
+            Console.WriteLine("No sequences of lowercase letters");
         }
     }
 }
