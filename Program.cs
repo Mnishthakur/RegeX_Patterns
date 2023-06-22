@@ -5,15 +5,15 @@ namespace RegexPattern;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Enter a string");
-        string input = Console.ReadLine();
-        MatchCollection matches = Regex.Matches(input, @"\b[a-z]+_[a-z]+\b");
+        string input = "<p>The <code>Regex</code> is a compiled representation of a regular expression.</p>";
+
+        MatchCollection matches = Regex.Matches(input, "<[^>]+>");
 
         if (matches.Count > 0)
         {
-            Console.WriteLine("Sequences of lowercase letter joined by an underscore;");
+            Console.WriteLine("HTML tags found:");
             foreach (Match match in matches)
             {
                 Console.WriteLine(match.Value);
@@ -21,7 +21,7 @@ class Program
         }
         else
         {
-            Console.WriteLine("No sequences of lowercase letters");
+            Console.WriteLine("No HTML tags found.");
         }
     }
 }
