@@ -7,21 +7,12 @@ class Program
 {
     static void Main()
     {
-        string input = "<p>The <code>Regex</code> is a compiled representation of a regular expression.</p>";
+        string pattern = "fox(es)?";
+        string input = "foxes are omnivorous mammals belonging to several genera of the family Canidae fox.";
 
-        MatchCollection matches = Regex.Matches(input, "<[^>]+>");
+        MatchCollection matches = Regex.Matches(input, pattern);
+        int count = matches.Count;
 
-        if (matches.Count > 0)
-        {
-            Console.WriteLine("HTML tags found:");
-            foreach (Match match in matches)
-            {
-                Console.WriteLine(match.Value);
-            }
-        }
-        else
-        {
-            Console.WriteLine("No HTML tags found.");
-        }
+        Console.WriteLine("There are {0} occurrences.", count);
     }
 }
