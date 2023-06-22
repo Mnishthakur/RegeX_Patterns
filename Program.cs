@@ -7,21 +7,18 @@ class Program
 {
     static void Main()
     {
-        string input = "image.jpg text.png document.docx code.cs backup.zip";
+        Console.WriteLine("Enter a website address: ");
+        string input = Console.ReadLine();
 
-        MatchCollection matches = Regex.Matches(input, @"\b\w+\.(jpg|jpeg|png|gif|bmp)\b");
+        bool isValid = Regex.IsMatch(input, @"^(https?://)?([\w-]+(\.[\w-]+)+)(:\d+)?(/.*)?$");
 
-        if (matches.Count > 0)
+        if (isValid)
         {
-            Console.WriteLine("Valid image file names found:");
-            foreach (Match match in matches)
-            {
-                Console.WriteLine(match.Value);
-            }
+            Console.WriteLine("The website address is valid.");
         }
         else
         {
-            Console.WriteLine("No valid image file names found.");
+            Console.WriteLine("The website address is invalid.");
         }
     }
 }
